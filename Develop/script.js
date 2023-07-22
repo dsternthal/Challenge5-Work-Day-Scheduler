@@ -23,7 +23,14 @@ $(function () {
 
   */
   for (let i = 9; i < 18; i++) {
-    var timeBlock = $("#hour-" + i)
+    var timeBlock = $("#hour-" + i);
+    var textArea = document.querySelectorAll(".description");
+
+    //how to retrieve local storage:
+    var event = localStorage.getItem("hour-"+i);
+    console.log(event); 
+    textArea.textContent=event;
+
     if (i === currentHour) {
       timeBlock.addClass("present");
     }
@@ -58,7 +65,10 @@ $(function () {
     var textArea = currentButton.siblings("textarea");
     var parentId = currentButton.parent().attr("id")
 
+    //used this to check that what i am adding is working
     alert(textArea.val()+" " + parentId);
+    localStorage.setItem(parentId, textArea.val());
+
   }
 
   saveBtn.on("click", saveEvent)
