@@ -24,12 +24,6 @@ $(function () {
   */
   for (let i = 9; i < 18; i++) {
     var timeBlock = $("#hour-" + i);
-    var textArea = document.querySelectorAll(".description");
-
-    //how to retrieve local storage:
-    var event = localStorage.getItem("hour-"+i);
-    console.log(event); 
-    textArea.textContent=event;
 
     if (i === currentHour) {
       timeBlock.addClass("present");
@@ -40,6 +34,16 @@ $(function () {
     else {
       timeBlock.addClass("future")
     }
+  }
+
+  var textArea = document.getElementsByClassName("description");
+  for (var i = 0; i < textArea.length; i++) {
+      var hour = $(textArea[i]).parent().attr("id")
+      // how to retrieve local storage:
+      var event = localStorage.getItem(hour);
+
+      console.log(event); 
+      textArea[i].textContent=event;
   }
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -63,7 +67,7 @@ $(function () {
   function saveEvent(event) {
     var currentButton = $(event.target);
     var textArea = currentButton.siblings("textarea");
-    var parentId = currentButton.parent().attr("id")
+    var parentId = currentButton.parent().attr("id");
 
     //used this to check that what i am adding is working
     alert(textArea.val()+" " + parentId);
