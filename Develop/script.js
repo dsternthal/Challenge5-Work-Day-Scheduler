@@ -5,6 +5,7 @@ $(function () {
 
   var currentDayEl=$("#currentDay");
   var currentDayTime=dayjs().format("dddd, MMMM D");
+  //        native java: document.querySelectorAll(""); this "all" is implied in jQuery
   var saveBtn=$(".saveBtn");
 
 
@@ -55,6 +56,8 @@ $(function () {
   function saveEvent(event){
     var currentButton=$(event.target);
     var textArea=currentButton.siblings("textarea");
+
+   alert(textArea.val())
   }
   
   saveBtn.on("click", saveEvent)
