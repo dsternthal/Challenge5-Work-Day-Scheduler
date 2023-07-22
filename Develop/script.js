@@ -3,10 +3,10 @@
 // in the html.
 $(function () {
 
-  var currentDayEl=$("#currentDay");
-  var currentDayTime=dayjs().format("dddd, MMMM D");
+  var currentDayEl = $("#currentDay");
+  var currentDayTime = dayjs().format("dddd, MMMM D");
   //        native java: document.querySelectorAll(""); this "all" is implied in jQuery
-  var saveBtn=$(".saveBtn");
+  var saveBtn = $(".saveBtn");
 
 
   console.log(currentDayTime);
@@ -23,11 +23,11 @@ $(function () {
 
   */
   for (let i = 9; i < 18; i++) {
-    var timeBlock = $("#hour-"+i)
-    if(i===currentHour){
+    var timeBlock = $("#hour-" + i)
+    if (i === currentHour) {
       timeBlock.addClass("present");
     }
-    else if(currentHour>i){
+    else if (currentHour > i) {
       timeBlock.addClass("past")
     }
     else {
@@ -53,13 +53,14 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-  function saveEvent(event){
-    var currentButton=$(event.target);
-    var textArea=currentButton.siblings("textarea");
+  function saveEvent(event) {
+    var currentButton = $(event.target);
+    var textArea = currentButton.siblings("textarea");
+    var parentId = currentButton.parent().attr("id")
 
-   alert(textArea.val())
+    alert(textArea.val()+" " + parentId);
   }
-  
+
   saveBtn.on("click", saveEvent)
 });
 
